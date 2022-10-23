@@ -5,15 +5,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
-public class Controller {
+public class Controller implements Repository {
 
-    private final ProductRepository productRepository;
+    private final Repository repository;
     private Cart cart;
 
     public void addProductToCartById(Integer id) {
-        productRepository.findById(id).ifPresent(cart::add);
+        repository.findById(id).ifPresent(cart::add);
     }
 
     public void deleteProductFromCartById(Integer id) {
@@ -33,4 +36,18 @@ public class Controller {
         return null;
     }
 
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Product> findById(Integer id) {
+        return Optional.empty();
+    }
 }

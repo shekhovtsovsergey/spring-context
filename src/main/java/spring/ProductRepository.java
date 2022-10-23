@@ -11,11 +11,12 @@ import java.util.Optional;
 
 @Component
 @Data
-public class ProductRepository {
+public class ProductRepository implements Repository{
 
     private final List<Product> products = new ArrayList<>();
 
     @PostConstruct
+    @Override
     public void init() {
         products.add(new Product(1, "Apple1", 100d));
         products.add(new Product(2, "Apple2", 200d));
@@ -25,13 +26,14 @@ public class ProductRepository {
     }
 
 
+    @Override
     public List<Product> findAll() {
         return new ArrayList<>(products);
         //тут вопрос как лучше сделать как выше или как ниже?
         //return products;
     }
 
-
+    @Override
     public Optional<Product> findById(Integer id) {
         if (id < (products.size()) && id >= 0) {
             return Optional.of(products.get(id));

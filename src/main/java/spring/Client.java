@@ -13,7 +13,6 @@ import java.util.Random;
 public class Client {
 
     private final spring.Controller Controller;
-
     private Integer productsNumber;
 
     Random random = new Random();
